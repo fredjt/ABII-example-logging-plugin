@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.28)
 
-project(example_logger LANGUAGES CXX VERSION 1.0.0)
+project(ABII-example-logging-plugin LANGUAGES CXX VERSION 1.0.0)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -17,16 +17,16 @@ if (NOT CMAKE_BUILD_TYPE STREQUAL "Debug" AND NOT CMAKE_BUILD_TYPE STREQUAL "DEB
 	add_compile_options("-flto" "-ffat-lto-objects" "-O3")
 endif ()
 
-add_library(example_logger SHARED include/bits/dlfcn.h include/header.cpp include/header.h)
+add_library(example-logger SHARED include/bits/dlfcn.h include/header.cpp include/header.h)
 
-target_link_libraries(example_logger PUBLIC abii::libabii)
+target_link_libraries(example-logger PUBLIC abii::libabii)
 
 if (BIT32)
-	set_target_properties(example_logger PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
+	set_target_properties(example-logger PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
 	add_compile_definitions("BIT32")
 endif ()
 
-target_include_directories(example_logger PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(example-logger PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 
 # CPack setup
 if (BIT32)
@@ -57,4 +57,4 @@ if (BIT32)
 else ()
 	set(CMAKE_INSTALL_PLUGINDIR "share/abii/64")
 endif ()
-install(TARGETS example_logger LIBRARY DESTINATION ${CMAKE_INSTALL_PLUGINDIR})
+install(TARGETS example-logger LIBRARY DESTINATION ${CMAKE_INSTALL_PLUGINDIR})
