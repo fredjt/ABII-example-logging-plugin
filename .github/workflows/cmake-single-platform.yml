@@ -26,9 +26,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: grep
-      run: sudo apt-get update && sudo apt-get install -yq grep
-
     - name: ABII
       run: curl -s https://api.github.com/repos/fredjt/ABII/releases/latest
             | grep "browser_download_url"
