@@ -22,8 +22,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: boost
-      run: sudo apt-get update && sudo apt-get install -yq libboost-test-dev
+    - name: grep
+      run: sudo apt-get update && sudo apt-get install -yq grep
+
+    - name: ABII
+      run: curl -s https://api.github.com/repos/fredjt/ABII/releases/latest \
+            | grep "browser_download_url" \
+            | grep ".deb" \
+            | cut -d '"' -f 4 | tee deb_urls && wget --input-file=deb_urls && sudo apt install -yq ./*.deb
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
