@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.28)
 
-project(ABII-example-logging-plugin LANGUAGES CXX VERSION 1.0.0)
+project(ABII-example-logging-plugin LANGUAGES CXX VERSION 1.0.1)
 
 set(CMAKE_CXX_STANDARD 20)
 
