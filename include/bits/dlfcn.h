@@ -10,16 +10,16 @@
 namespace abii
 {
 const defines_map bits_dlfcn_rtld = {
-    {RTLD_LOCAL, "RTLD_LOCAL"},
-    {RTLD_LAZY, "RTLD_LAZY"},
-    {RTLD_NOW, "RTLD_NOW"},
-    {RTLD_NOLOAD, "RTLD_NOLOAD"},
-    {RTLD_DEEPBIND, "RTLD_DEEPBIND"},
-    {RTLD_GLOBAL, "RTLD_GLOBAL"},
-    {RTLD_NODELETE, "RTLD_NODELETE"}
+    {0, "RTLD_LOCAL"},
+    {0x00001, "RTLD_LAZY"},
+    {0x00002, "RTLD_NOW"},
+    {0x00004, "RTLD_NOLOAD"},
+    {0x00008, "RTLD_DEEPBIND"},
+    {0x00100, "RTLD_GLOBAL"},
+    {0x01000, "RTLD_NODELETE"}
 };
 
-template<typename T>
+template <typename T>
 std::string print_bits_dlfcn_rtld(const T v)
 {
     return print_or_enum_entries(v, bits_dlfcn_rtld);
