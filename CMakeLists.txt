@@ -17,7 +17,7 @@ if (NOT CMAKE_BUILD_TYPE STREQUAL "Debug" AND NOT CMAKE_BUILD_TYPE STREQUAL "DEB
 	add_compile_options("-flto" "-ffat-lto-objects" "-O3")
 endif ()
 
-add_library(example-logger SHARED include/bits/dlfcn.h include/header.cpp include/header.h)
+add_library(example-logger SHARED hooks/bits/dlfcn.h hooks/header.cpp hooks/header.h)
 
 target_link_libraries(example-logger PUBLIC abii::libabii)
 
