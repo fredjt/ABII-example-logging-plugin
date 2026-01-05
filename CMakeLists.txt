@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 20)
 if (BIT32)
 	list(PREPEND CMAKE_PREFIX_PATH "/usr/lib32/cmake/abii")
 endif ()
-find_package(abii REQUIRED)
+find_package(abii CONFIG REQUIRED)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
@@ -21,12 +21,14 @@ add_library(example-logger SHARED hooks/bits/dlfcn.h hooks/header.cpp hooks/head
 
 target_link_libraries(example-logger PUBLIC abii::libabii)
 
+target_compile_options(example-logger PRIVATE -msse2)
+
 if (BIT32)
 	set_target_properties(example-logger PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
 	add_compile_definitions("BIT32")
 endif ()
 
-target_include_directories(example-logger PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(example-logger PRIVATE ${CMAKE_CURRENT_LIST_DIR})
 
 # CPack setup
 if (BIT32)
